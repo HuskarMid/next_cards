@@ -1,95 +1,43 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import styled from "styled-components";
+
+const HomeUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+`;
+
+const HomeLi = styled.li`
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 560px;
+  margin-top: 5px;
+  
+  &::before {
+    content: '✓';
+    margin-right: 10px;
+    color: green;
+  }
+  
+  & p {
+    font-size: 18px;
+  }
+`;
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      <h1 style={{marginTop: '12px'}}>Тестовое для Экосистемы Альфа</h1>
+      <HomeUl>
+        <HomeLi><p>В начале данные берутся из Api. Далее state синхронизируется с localStorage</p></HomeLi>
+        <HomeLi><p>Кастомный хук useProducts для подгрузки/диспатча данных из компонентов</p></HomeLi>
+        <HomeLi><p>Список продуктов, фильтрация по избранным, поиск, удаление, пагинация</p></HomeLi>
+        <HomeLi><p>Страница create, 12 фото подгружаются из Api</p></HomeLi>
+        <HomeLi><p>[id] страница продукта, [id] редактирование</p></HomeLi>
+      </HomeUl>
     </div>
   );
 }
