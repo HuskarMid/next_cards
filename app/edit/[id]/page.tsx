@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { IProduct } from '@/app/store/products/productTypes'
 import { useParams } from 'next/navigation'
 import { useProducts } from '@/app/hooks/useProducts'
+import { generateStaticParams } from '@/app/utils/generateStaticParams'
 
 const CreateProductContainer = styled.div`
     padding: 20px;
@@ -129,6 +130,10 @@ const CreateProductPage = () => {
 
     // Хук получения данных из кэша/api
     const { data } = useProducts();
+    //Для gh pages
+    if (data) {
+        generateStaticParams(data);
+    }
 
     const editingProduct = data?.find(product => product.id === Number(params.id))
 

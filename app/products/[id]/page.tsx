@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { IProduct } from "@/app/store/products/productTypes";
+import { generateStaticParams } from "@/app/utils/generateStaticParams";
 
 const ProductContainer = styled.div`
     padding: 20px;
@@ -85,6 +86,10 @@ const ProductPage = () => {
     
     // Получаем данные через наш хук useProducts
     const { data, isLoading, error } = useProducts(10);
+    //Для gh pages
+    if (data) {
+        generateStaticParams(data);
+    }
     
     // Находим нужный продукт по id
     const product = data?.find((p: IProduct) => p.id === Number(params.id));
