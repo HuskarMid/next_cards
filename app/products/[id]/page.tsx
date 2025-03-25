@@ -5,9 +5,13 @@ import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { IProduct } from "@/app/store/products/productTypes";
-import { generateStaticParams } from "@/app/utils/generateStaticParams";
 
-export { generateStaticParams }
+export async function generateStaticParams() {
+    const { data } = await useProducts(10);
+    return data?.map((product: IProduct) => ({
+        id: product.id.toString()
+    }));
+}
 
 const ProductContainer = styled.div`
     padding: 20px;
