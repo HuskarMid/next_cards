@@ -42,7 +42,7 @@ const ProductTitle = styled.h1`
 const ProductPrice = styled.div`
     font-size: 24px;
     font-weight: bold;
-    color: #BFBA30;
+    color: var(--secondary-color);
     margin-bottom: 10px;
 `
 
@@ -75,7 +75,7 @@ const BackButton = styled.button`
 
 const EditButton = styled(BackButton)`
     margin-left: 15px;
-    background-color: #BFBA30;
+    background-color: var(--secondary-color);
 `
 
 const ProductPage = () => {

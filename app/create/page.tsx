@@ -25,7 +25,7 @@ const Form = styled.form<{ $chooseImgActive: boolean }>`
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     
-    height: ${props => props.$chooseImgActive ? '1050px' : '420px'};
+    height: ${props => props.$chooseImgActive ? '1050px' : '450px'};
     transition: height 0.5s ease-in-out;
 `
 
@@ -46,10 +46,13 @@ const Input = styled.input`
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    color: black;
+
+    background-color: #ebebeb;
     
     &:focus {
         outline: none;
-        border-color: #BFBA30;
+        border-color: var(--secondary-color);
     }
 `
 
@@ -60,16 +63,19 @@ const TextArea = styled.textarea`
     font-size: 16px;
     min-height: 100px;
     resize: vertical;
+    color: black;
+
+    background-color: #ebebeb;
     
     &:focus {
         outline: none;
-        border-color: #BFBA30;
+        border-color: var(--secondary-color);
     }
 `
 
 const Button = styled.button`
     padding: 12px 20px;
-    background-color: #BFBA30;
+    background-color: var(--secondary-color);
     border: none;
     border-radius: 5px;
     color: white;
@@ -78,7 +84,7 @@ const Button = styled.button`
     transition: background-color 0.2s;
     
     &:hover {
-        background-color: #a8a42b;
+        background-color: #6f51b5;
     }
     
     &:disabled {
@@ -103,7 +109,7 @@ const BackButton = styled(Button)`
 `
 
 const PageTitle = styled.h1`
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 20px;
     font-size: 24px;
 `
@@ -127,7 +133,7 @@ const ImageItem = styled.div<{ $selected: boolean }>`
     overflow: hidden;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 3px solid ${props => props.$selected ? '#BFBA30' : 'transparent'};
+    border: 3px solid ${props => props.$selected ? 'var(--secondary-color)' : 'transparent'};
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background-color: white;
     
@@ -239,18 +245,16 @@ const CreateProductPage = () => {
         try {
             // Создаем новый продукт
             const newProduct: IProduct = {
-                id: (cashedData?.length || 0) + 1, // Добавляем проверку на undefined
+                id: (cashedData?.length || 0) + 1, 
                 title: formData.title,
                 price: Number(formData.price),
                 description: formData.description,
                 image: formData.image,
-                category: 'other' // Значение по умолчанию
+                category: 'other'
             }
             
-            // Добавляем продукт в store
             dispatch(addProduct(newProduct))
             
-            // Перенаправляем на страницу продуктов
             router.push('/products')
         } catch (error) {
             console.error('Ошибка при создании продукта:', error)
@@ -273,7 +277,7 @@ const CreateProductPage = () => {
 
     const handleChooseImg = (e: React.MouseEvent) => {
         e.preventDefault()
-        setChooseImgActive(true)
+        setChooseImgActive(true);
     }
 
     // SSR
@@ -329,24 +333,8 @@ const CreateProductPage = () => {
                 {!chooseImgActive ? (
                     <FormGroup>
                         <Button type="button" onClick={handleChooseImg}>
-                            {formData.image ? 'Изменить изображение' : 'Выбрать изображение'}
+                            Выбрать изображение
                         </Button>
-                        {formData.image && (
-                            <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                                <Image 
-                                    src={formData.image} 
-                                    alt="Выбранное изображение" 
-                                    width={150}
-                                    height={150}
-                                    style={{ 
-                                        objectFit: 'contain',
-                                        border: '1px solid #ddd',
-                                        borderRadius: '4px',
-                                        padding: '5px'
-                                    }} 
-                                />
-                            </div>
-                        )}
                     </FormGroup>
                 ) : (
                     <>
@@ -373,9 +361,13 @@ const CreateProductPage = () => {
                     </>
                 )}
 
-                <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Создание...' : 'Создать продукт'}
-                </Button>
+                {chooseImgActive ? (
+                    <Button type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? 'Создание...' : 'Создать продукт'}
+                    </Button>
+                ) : (
+                    <></>
+                )}
             </Form>
         </CreateProductContainer>
     )

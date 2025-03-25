@@ -31,8 +31,8 @@ const ProductItem = styled.li`
     justify-content: center;
     
     width: 248px;
-    height: 253px;
-    border: 2px solid #BFBA30;
+    height: 250px;
+    border: 3px solid var(--secondary-color);
     border-radius: 30px;
     background-color: #fff;
 
@@ -47,13 +47,13 @@ const ProductItem = styled.li`
 
 const ProductItem__Title = styled.div`
     position: absolute;
-    top: 0;
+    top: -1px;
     width: 100%;
     height: 50px;
 
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    background-color: #BFBA30;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #9D73FF;
     padding: 10px;
 
     display: flex;
@@ -62,9 +62,9 @@ const ProductItem__Title = styled.div`
     text-align: center;
 
     & h3 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #000;
+        font-size: 17px;
+        font-weight: 400;
+        color: #ffffff;
 
         &:hover {
             text-decoration: underline;
@@ -75,13 +75,13 @@ const ProductItem__Title = styled.div`
 
 const ProductItem__Bottom = styled.div`
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     width: 100%;
     height: 35px;
 
-    border-bottom-left-radius: 28px;
-    border-bottom-right-radius: 28px;
-    background-color: #BFBA30;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #9D73FF;
     
     padding: 5px 15px;
     display: flex;
@@ -90,8 +90,8 @@ const ProductItem__Bottom = styled.div`
     
     & h3 {
         font-size: 16px;
-        font-weight: 600;
-        color: #000;
+        font-weight: 400;
+        color: #ffffff;
     }
 `;
 
@@ -156,11 +156,20 @@ const LikeButton = styled.div`
 const ProductInput = styled.input`
     width: 805px;
     height: 30px;
-    border: 1px solid #BFBA30;
+
     border-radius: 5px;
     padding: 0 10px;
-
+    background-color: #ffffff;
     margin: 50px 0 10px 0;
+    border: 2px solid var(--secondary-color);
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    &::placeholder {
+        color: #000;
+        font-size: 14px;
+        font-weight: 600;
+    }
 `;
 
 const FilterContainer = styled.div`
@@ -176,15 +185,16 @@ const FilterContainer = styled.div`
 
 const FilterButton = styled.button<{ $active: boolean }>`
     padding: 8px 16px;
-    border: 2px solid #BFBA30;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
-    background-color: ${props => props.$active ? '#BFBA30' : 'transparent'};
-    color: ${props => props.$active ? '#fff' : '#ffffff'};
+    background-color: ${props => props.$active ? 'var(--secondary-color)' : 'transparent'};
+    color: ${props => props.$active ? '#fff' : '#000000'};
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     
     &:hover {
-        background-color: #BFBA30;
+        background-color: var(--secondary-color);
         color: #fff;
     }
 `;
@@ -202,16 +212,15 @@ const PaginationContainer = styled.div`
 const PaginationPageNumber = styled.div`
     padding: 0px 16px;
     margin-top: 8px;
-
-
+    color: black;
 `;
 
 const PaginationButton = styled.button`
     padding: 3px 16px;
-    border: 2px solid #BFBA30;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
     background-color: transparent;
-    color: #BFBA30;
+    color: #000;
     font-size: 18px;
 
     &:first-child {
@@ -219,7 +228,7 @@ const PaginationButton = styled.button`
     }
     transition: all 0.2s ease;
     &:hover {
-        background-color: #BFBA30;
+        background-color: var(--secondary-color);
         color: white;
         cursor: pointer;
     }

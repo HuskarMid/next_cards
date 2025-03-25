@@ -7,6 +7,10 @@ const HomeUl = styled.ul`
   flex-direction: column;
   gap: 10px;
   margin-top: 15px;
+
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 25px;
 `;
 
 const HomeLi = styled.li`
@@ -19,18 +23,18 @@ const HomeLi = styled.li`
   &::before {
     content: '✓';
     margin-right: 10px;
-    color: green;
+    color: #ffffff;
   }
   
   & p {
-    font-size: 18px;
+    font-size: 19px;
   }
 `;
 
 export default function HomeContent() {
   return (
     <>
-      <h1 style={{marginTop: '12px'}}>Тестовое для Экосистемы Альфа</h1>
+      <h1 style={{marginTop: '12px', color: 'black'}}>Тестовое для Экосистемы Альфа</h1>
       <HomeUl>
         <HomeLi><p>В начале данные берутся из Api. Далее state синхронизируется с localStorage</p></HomeLi>
         <HomeLi><p>Кастомный хук useProducts для подгрузки/диспатча данных из компонентов</p></HomeLi>

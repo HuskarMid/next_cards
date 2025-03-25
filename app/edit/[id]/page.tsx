@@ -43,12 +43,14 @@ const Input = styled.input`
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-
     width: 77%;
+
+    color: black;
+    background-color: #ebebeb;
     
     &:focus {
         outline: none;
-        border-color: #BFBA30;
+        border-color: var(--secondary-color);
     }
 `
 
@@ -59,16 +61,20 @@ const TextArea = styled.textarea`
     font-size: 16px;
     min-height: 125px;
     resize: vertical;
+
+    color: black;
+
+    background-color: #ebebeb;
     
     &:focus {
         outline: none;
-        border-color: #BFBA30;
+        border-color: var(--secondary-color);
     }
 `
 
 const Button = styled.button`
     padding: 12px 20px;
-    background-color: #BFBA30;
+    background-color: var(--secondary-color);
     border: none;
     border-radius: 5px;
     color: white;
@@ -77,7 +83,7 @@ const Button = styled.button`
     transition: background-color 0.2s;
     
     &:hover {
-        background-color: #a8a42b;
+        background-color: #8260d2;
     }
     
     &:disabled {
