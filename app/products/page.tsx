@@ -400,7 +400,7 @@ const Products = () => {
                         <ProductItem__Bottom>
                             <h3>{product.price} $</h3>
                             <DeleteIcon 
-                                src="/trash.svg" 
+                                src="trash.svg" 
                                 alt="Удалить" 
                                 onClick={(e) => handleDeleteProduct(e, product.id)}
                             />
