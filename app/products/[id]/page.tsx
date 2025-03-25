@@ -84,7 +84,7 @@ const ProductPage = () => {
     const [isClient, setIsClient] = useState(false);
     
     // Получаем данные через наш хук useProducts
-    const { data, isLoading, error, loaded } = useProducts(10);
+    const { data, isLoading, error } = useProducts(10);
     
     // Находим нужный продукт по id
     const product = data?.find((p: IProduct) => p.id === Number(params.id));

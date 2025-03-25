@@ -5,6 +5,7 @@ import { useDispatch } from '@/app/store/store'
 import { addProduct } from '@/app/store/products/productsSlice'
 import styled from 'styled-components'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { IProduct } from '@/app/store/products/productTypes'
 import { useGetProductsQuery } from '../store/products/products'
 import { useProducts } from '../hooks/useProducts'
@@ -238,7 +239,7 @@ const CreateProductPage = () => {
         try {
             // Создаем новый продукт
             const newProduct: IProduct = {
-                id: cashedData.length + 1, // Временный ID
+                id: (cashedData?.length || 0) + 1, // Добавляем проверку на undefined
                 title: formData.title,
                 price: Number(formData.price),
                 description: formData.description,
@@ -332,12 +333,12 @@ const CreateProductPage = () => {
                         </Button>
                         {formData.image && (
                             <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                                <img 
+                                <Image 
                                     src={formData.image} 
                                     alt="Выбранное изображение" 
+                                    width={150}
+                                    height={150}
                                     style={{ 
-                                        width: '150px', 
-                                        height: '150px', 
                                         objectFit: 'contain',
                                         border: '1px solid #ddd',
                                         borderRadius: '4px',
@@ -359,7 +360,13 @@ const CreateProductPage = () => {
                                     $selected={selectedImageUrl === product.image}
                                     onClick={() => handleSelectImage(product.image)}
                                 >
-                                    <img src={product.image} alt={product.title} />
+                                    <Image 
+                                        src={product.image} 
+                                        alt={product.title}
+                                        width={150}
+                                        height={150}
+                                        style={{ objectFit: 'contain' }}
+                                    />
                                 </ImageItem>
                             ))}
                         </ImgList>

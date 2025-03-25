@@ -8,11 +8,6 @@ import { removeProduct } from "../store/products/productsSlice";
 import { IProduct } from "../store/products/productTypes";
 import { useRouter } from "next/navigation";
 
-const Product__Title = styled.h2`
-    margin: 5px 0 5px 0;
-    text-align: center;
-`;
-
 const Product__Container = styled.div`
     display: flex;
     flex-wrap: wrap;

@@ -54,16 +54,3 @@ export const useProductActions = () => {
   };
 };
 
-// Для gh desktop
-export async function generateStaticParams() {
-  const { loaded, items } = useSelector((state) => state.products);
-
-  const { data: products } = await useGetProductsQuery(10, {
-    skip: loaded
-  });
-  
-  return products?.map((product) => ({
-    id: product.id.toString(),
-  })) || [];
-}
-

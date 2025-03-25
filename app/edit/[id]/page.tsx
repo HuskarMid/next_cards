@@ -6,7 +6,6 @@ import { updateProduct } from '@/app/store/products/productsSlice'
 import styled from 'styled-components'
 import { useRouter } from 'next/navigation'
 import { IProduct } from '@/app/store/products/productTypes'
-import { useGetProductsQuery } from '@/app/store/products/products'
 import { useParams } from 'next/navigation'
 import { useProducts } from '@/app/hooks/useProducts'
 
@@ -15,7 +14,7 @@ const CreateProductContainer = styled.div`
     max-width: 800px;
     margin: 0 auto;
 `
-const Form = styled.form<{ $chooseImgActive: boolean }>`
+const Form = styled.form<{ $chooseImgActive?: boolean }>`
     display: flex;
     flex-direction: column;
     position: relative;
@@ -24,9 +23,6 @@ const Form = styled.form<{ $chooseImgActive: boolean }>`
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    
-    height: ${props => props.$chooseImgActive ? '1050px' : '420px'};
-    transition: height 0.5s ease-in-out;
     height: 400px;
 `
 const FormGroup = styled.div`
@@ -132,7 +128,7 @@ const CreateProductPage = () => {
     const params = useParams()
 
     // Хук получения данных из кэша/api
-    const { data, isLoading, error, loaded } = useProducts();
+    const { data } = useProducts();
 
     const editingProduct = data?.find(product => product.id === Number(params.id))
 
@@ -144,7 +140,6 @@ const CreateProductPage = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [errors, setErrors] = useState<FormErrors>({})
-    const [chooseImgActive, setChooseImgActive] = useState(false)
     
     const [formData, setFormData] = useState({
         title: '',
@@ -247,7 +242,7 @@ const CreateProductPage = () => {
             <BackButton onClick={handleBack}>← Назад</BackButton>
             <PageTitle>Редактирование продукта</PageTitle>
             
-            <Form onSubmit={handleSubmit} $chooseImgActive={chooseImgActive}>
+            <Form onSubmit={handleSubmit}>
                 <Input__Image src={editingProduct?.image} alt="Изображение продукта" />
                 <FormGroup>
                     <Label htmlFor="title">Название</Label>
