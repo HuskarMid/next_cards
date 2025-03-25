@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { IProduct } from "@/app/store/products/productTypes";
 
-export { generateStaticParams } from '@/app/utils/generateStaticParams'
-
 const ProductContainer = styled.div`
     padding: 20px;
     max-width: 1200px;
