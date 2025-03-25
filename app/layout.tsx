@@ -7,6 +7,9 @@ import MyFooter from "./components/myFooter";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
+// Для работы с styled-components в next
+import StyledComponentsRegistry from './registry'
+
 
 export default function RootLayout({
   children,
@@ -19,7 +22,9 @@ export default function RootLayout({
         <MyHeader />
         <main className="container">
           <Provider store={store}>
-            {children}
+            <StyledComponentsRegistry>
+              {children}
+            </StyledComponentsRegistry>
           </Provider>
         </main>
         <MyFooter  />
