@@ -199,11 +199,6 @@ const CreateProductPage = () => {
         }))
     }
 
-    // Закрытие панели выбора изображений
-    const handleCloseImgSelect = () => {
-        setChooseImgActive(false)
-    }
-
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {}
         
@@ -280,7 +275,7 @@ const CreateProductPage = () => {
         setChooseImgActive(true)
     }
 
-    // Показываем загрузку, если страница находится в процессе SSR или загружаются данные
+    // SSR
     if (!isClient || isLoading) {
         return <CreateProductContainer>Загрузка изображений...</CreateProductContainer>
     }
