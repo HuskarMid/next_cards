@@ -172,7 +172,7 @@ const CreateProductPage = () => {
     const { data, isLoading } = useGetProductsQuery(12)
     const [isClient, setIsClient] = useState(false)
     // Та data, что в кэше
-    const { data: cashedData, isLoading: cashedDataLoading, error, loaded } = useProducts();
+    const { data: cashedData} = useProducts();
 
     
     useEffect(() => {
