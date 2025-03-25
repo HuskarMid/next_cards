@@ -273,15 +273,10 @@ const Products = () => {
     // Состояние для пагинации (12 продуктов)
     const [currentPage, setCurrentPage] = useState(1);
 
+    // Фильтры
     useEffect(() => {
         if (!data) return;
-        
-        let filtered = data;
-        
-        // Фильтр избранного
-        if (showFavorites) {
-            filtered = filtered.filter(product => likedProducts[product.id]);
-        }
+        let filtered = [...data];
         
         // Поиск
         if (searchQuery !== '') {
@@ -289,15 +284,35 @@ const Products = () => {
                 product.title.toLowerCase().includes(searchQuery.toLowerCase())
             );
         }
-
-        if (currentPage > 0) {
-            const startIndex = (currentPage - 1) * 12;
-            const endIndex = startIndex + 12;
-            const paginatedData = filtered.slice(startIndex, endIndex);
-            setFilteredData(paginatedData);
-        } else {
-            setCurrentPage(1);
+        
+        // Фильтр избранного
+        if (showFavorites) {
+            filtered = filtered.filter(product => likedProducts[product.id]);
         }
+
+        // Есть ли данные после фильтрации
+        if (filtered.length === 0) {
+            setFilteredData([]);
+            return;
+        }
+
+        const totalPages = Math.ceil(filtered.length / 12);
+        if (currentPage > totalPages) {
+            setCurrentPage(totalPages);
+            return;
+        }
+
+        if (currentPage < 1) {
+            setCurrentPage(1);
+            return;
+        }
+
+        // Пагинация
+        const startIndex = (currentPage - 1) * 12;
+        const endIndex = startIndex + 12;
+        const paginatedData = filtered.slice(startIndex, endIndex);
+        setFilteredData(paginatedData);
+
     }, [searchQuery, data, showFavorites, likedProducts, currentPage]);
     
     useEffect(() => {
