@@ -9,12 +9,7 @@ import { IProduct } from '@/app/store/products/productTypes'
 import { useParams } from 'next/navigation'
 import { useProducts } from '@/app/hooks/useProducts'
 
-export async function generateStaticParams() {
-    const { data } = await useProducts(10);
-    return data?.map((product: IProduct) => ({
-        id: product.id.toString()
-    }));
-}
+export { generateStaticParams } from '@/app/utils/generateStaticParams'
 
 const CreateProductContainer = styled.div`
     padding: 20px;

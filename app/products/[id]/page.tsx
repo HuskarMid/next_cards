@@ -6,12 +6,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { IProduct } from "@/app/store/products/productTypes";
 
-export async function generateStaticParams() {
-    const { data } = await useProducts(10);
-    return data?.map((product: IProduct) => ({
-        id: product.id.toString()
-    }));
-}
+export { generateStaticParams } from '@/app/utils/generateStaticParams'
 
 const ProductContainer = styled.div`
     padding: 20px;
@@ -92,10 +87,6 @@ const ProductPage = () => {
     
     // Получаем данные через наш хук useProducts
     const { data, isLoading, error } = useProducts(10);
-    //Для gh pages
-    if (data) {
-        generateStaticParams(data);
-    }
     
     // Находим нужный продукт по id
     const product = data?.find((p: IProduct) => p.id === Number(params.id));
