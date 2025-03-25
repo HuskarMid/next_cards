@@ -10,6 +10,8 @@ import { useParams } from 'next/navigation'
 import { useProducts } from '@/app/hooks/useProducts'
 import { generateStaticParams } from '@/app/utils/generateStaticParams'
 
+export { generateStaticParams }
+
 const CreateProductContainer = styled.div`
     padding: 20px;
     max-width: 800px;

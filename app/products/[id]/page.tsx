@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import { IProduct } from "@/app/store/products/productTypes";
 import { generateStaticParams } from "@/app/utils/generateStaticParams";
 
+export { generateStaticParams }
+
 const ProductContainer = styled.div`
     padding: 20px;
     max-width: 1200px;
