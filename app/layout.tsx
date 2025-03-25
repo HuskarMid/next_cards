@@ -2,7 +2,6 @@
 import { Montserrat } from 'next/font/google'
 import "./globals.css";
 import MyHeader from "./components/myHeader";
-import MyFooter from "./components/myFooter";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
